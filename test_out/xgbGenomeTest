@@ -1,0 +1,21 @@
+test_fasta/1001.fasta
+Antibiotic	MIC Test Method	Low Bound (within 1)	Prediction	High Bound (within 1)
+Amikacin	MIC	4.0	8.0	16.0
+Ampicillin	MIC	16.0	32.0	64.0
+Aztreonam	MIC	8.0	16.0	32.0
+Cefazolin	MIC	16.0	32.0	64.0
+Cefepime	MIC	2.0	4.0	8.0
+Cefoxitin	MIC	4.0	8.0	16.0
+Ceftazidime	MIC	8.0	16.0	32.0
+Ceftriaxone	MIC	32.0	64.0	128.0
+Cefuroxime sodium	MIC	16.0	32.0	64.0
+Ciprofloxacin	MIC	2.0	4.0	8.0
+Ertapenem	MIC	4.0	8.0	16.0
+Fosfomycin	MIC	4.0	8.0	16.0
+Gentamicin	MIC	4.0	8.0	16.0
+Imipenem	MIC	0.5	1.0	2.0
+Levofloxacin	MIC	2.0	4.0	8.0
+Meropenem	MIC	0.5	1.0	2.0
+Nitrofurantoin	MIC	32.0	64.0	128.0
+Tetracycline	MIC	8.0	16.0	32.0
+Tobramycin	MIC	4.0	8.0	16.0
