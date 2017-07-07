@@ -8,7 +8,7 @@ The model requires the installation of XGBoost and the kmc tool.  The kmc tool m
 
 # Running
 
-The testGenomeXGBoost.sh script is used to make predictions and takes the name of the following arguments:
+The *testGenomeXGBoost.sh* script is used to make predictions and takes the name of the following arguments:
 - fasta : fasta to be predicted (*test_fasta/1001.fasta*)
 - temp : a directory to store temp data in (*temp/*)
 - model : the pkl model produced by XGBoost (*data_files/KPN.mic.FIN.4.pkl*)
