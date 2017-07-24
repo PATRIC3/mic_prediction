@@ -9,9 +9,10 @@ The model requires the installation of Python\*, XGBoost (and python API), and t
 \*Note that Python 2.7 is required, Python 3 will not work.  
 
 ## 1.1 Installing KMC
-Linux and Mac OS X executables for KMC are available through this URL: http://sun.aei.polsl.pl/REFRESH/index.php?page=projects&project=kmc&subpage=download.  Download the executable and untar the file using
+Linux and Mac OS X executables for KMC are available through this URL: http://sun.aei.polsl.pl/REFRESH/index.php?page=projects&project=kmc&subpage=download.  Download the executable and untar the file using:
 
 ```bash
+cd ~/Downloads/  #This is the default directory for downloads, make sure the KMC3 download is in this directory, otherwise, replace "~/Downloads/" with the appropriate directory
 tar -xvf KMC3.*.tar
 ```
 
