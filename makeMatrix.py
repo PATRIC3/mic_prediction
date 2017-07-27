@@ -2,6 +2,8 @@
 python makeMatrix.py [kmcOut] [arrInd] [antibioList] [micMethods] [out1] [out2] [contigs]
 '''
 
+# test for commit.  delete later
+
 from sys import argv,stderr
 
 f = open(argv[7])
