@@ -152,6 +152,12 @@ Many people use Anaconda to install their python as it also installs many well k
 conda install -c conda-forge xgboost
 ```
 
+Additionally, the following anaconda package works as well for installation:
+
+```bash
+conda install -c anaconda py-xgboost
+```
+
 # 2 Running
 Once you have installed the tool, cd to the directory of this README file and run the following to ensure that the tool works properly and all required prerequisites and files were obtained during cloning/downloading.
 
@@ -165,7 +171,7 @@ This package offers two different ways for users to make predictions, either dir
 
 ## 2.1 Running from FASTA
 
-The *testGenomeXGBoost.sh* script is used to make predictions and takes the name of the following arguments:
+The *mic_prediction_fasta.sh* script is used to make predictions and takes the name of the following arguments:
 - fasta : assembled fasta of genome to be predicted (*test_fasta/1001.fasta*)
 - temp : a directory to store temporary data in (*temp/*)
 - model : the pkl model produced by XGBoost (*data_files/KPN.mic.FIN.4.pkl*)
@@ -180,7 +186,7 @@ The test run can be done using the following from the root directory of the AMR 
 
 ```bash
 cd /directory/of/this/file/
-bash testGenomeXGBoost.sh test_fasta/1001.fasta temp/ data_files/Kleb.table.10cv.0.0.pkl 1 test_out/xgbGenomeTest data_files/ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.mod_acc
+bash mic_prediction_fasta.sh test_fasta/1001.fasta temp/ data_files/Kleb.table.10cv.0.0.pkl 1 test_out/xgbGenomeTest data_files/ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.mod_acc
 ```
 
 This call will make predictions on the 1001.fasta file which is a fasta containing contigs for a Klebsiella genome.  Note that the model provided is only designed to make predictions for Klebsiella genomes.  To run on your own fasta, just replace the location of the fasta (*test_fasta/1001.fasta*) file with the location of your own fasta file.  
@@ -236,7 +242,7 @@ Tobramycin	BD_Pheonix	1.0	0.935438298873	0.92152099106	0.949355606686	1772	0.922
 
 ## 2.2 Running from KMC Output
 
-Additionally, you can run this tool using known KMC output, this also allows you to quickly script with a directory full of genomes that have been run through the KMC tool.  This is done using the *testGenomeXGBoost_KMC.sh* script.  It takes the following arguments:
+Additionally, you can run this tool using known KMC output, this also allows you to quickly script with a directory full of genomes that have been run through the KMC tool.  This is done using the *mic_prediction_kmc.sh* script.  It takes the following arguments:
 - KMC output : output from *kmc_dump* tool (*test_fasta/1001.fasta.10.kmrs*)
 - temp : a directory to store temporary data in (*temp/*)
 - model : the pkl model produced by XGBoost (*data_files/KPN.mic.FIN.4.pkl*)
@@ -250,7 +256,7 @@ Additionally, you can run this tool using known KMC output, this also allows you
 An example run of this script is below.  
 
 ```bash
-bash testGenomeXGBoost_KMC.sh test_fasta/1001.fasta.10.kmrs temp/ data_files/Kleb.table.10cv.0.0.pkl 1 test_out/xgbGenomeTest.KMC data_files/ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.mod_acc
+bash mic_prediction_kmc.sh test_fasta/1001.fasta.10.kmrs temp/ data_files/Kleb.table.10cv.0.0.pkl 1 test_out/xgbGenomeTest.KMC data_files/ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.mod_acc
 ```
 
 The KMC output file in this case is the output from the *kmc_dump* tool included with KMC.  This requires you to run both *kmc* and *kmc_dump*.  
