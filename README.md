@@ -153,6 +153,15 @@ conda install -c conda-forge xgboost
 ```
 
 # 2 Running
+Once you have installed the tool, cd to the directory of this README file and run the following to ensure that the tool works properly and all required prerequisites and files were obtained during cloning/downloading.
+
+```bash
+bash testrun.sh
+```
+
+You may get a warning (specified in section 1.3.1) with specific versions of XGBoost and SciKit-Learn.  That is not an issue.  If you get output, then everything is installed properly.  
+
+This package offers two different ways for users to make predictions, either direct from the FASTA file or direct through KMC_dump output.  
 
 ## 2.1 Running from FASTA
 
@@ -227,32 +236,21 @@ Tobramycin	BD_Pheonix	1.0	0.935438298873	0.92152099106	0.949355606686	1772	0.922
 
 ## 2.2 Running from KMC Output
 
-Additionally, you can run this tool using known KMC output, this also allows you to quickly script with a directory full of genomes that have been run through the KMC tool.  To do this, two lines of code need to be run:
+Additionally, you can run this tool using known KMC output, this also allows you to quickly script with a directory full of genomes that have been run through the KMC tool.  This is done using the *testGenomeXGBoost_KMC.sh* script.  It takes the following arguments:
+- KMC output : assembled fasta of genome to be predicted (*test_fasta/1001.fasta.10.kmrs*)
+- temp : a directory to store temporary data in (*temp/*)
+- model : the pkl model produced by XGBoost (*data_files/KPN.mic.FIN.4.pkl*)
+- threads : the number of threads to use while running
+- output file : the file to output (*test_out/xgbGenomeTest* is provided as an example)
+- ArrInd map : a file that maps a feature to an array index (*data_files/ArrInds*)
+- antibiotic list : a file that contains a list of antibiotics to test on (*data_files/antibioticsList.uniq*)
+- method list : a file that contains a list of methdos to test on (*data_files/MICMethods*)
+- kmer list : a file that contains a list of kmers that can exist (*data_files/all_kmrs* can be used for **any** model that uses 10-mers)
+
+An example run of this script is below.  
 
 ```bash
-python /path/to/makeMatrix.py [kmc file] [/path/to/arrInd] [/path/to/uniq antibiotics list] [/path/to/MIC methods] [libsvm output file location] [matrix order output file location] [/path/to/contigs list]
+bash testGenomeXGBoost_KMC.sh test_fasta/1001.fasta.10.kmrs temp/ data_files/Kleb.table.10cv.0.0.pkl 1 test_out/xgbGenomeTest.KMC data_files/ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.mod_acc
 ```
 
-The default locations for "/path/to/" files are (from the root of this README):
-- /makeMatrix.py
-- /data_files/arrInds
-- /data_files/antibioticsList_Kleb.uniq
-- /data_files/MICMethods
-- /data_files/all_kmrs
-
-This will create a libsvm matrix for you to predict with.  You can then run the following to make predictions and print the table to standard out:
-
-```bash
-python /path/to/testXGBoost.py [/path/to/model.mkl] [libsvm output file from previous step] [matrix order output file from previous step] [number of threads to use] [/path/to/model accuracy file]
-```
-
-The default locations for "/path/to/" files are (from the root of this README):
-- /testXGBoost.py
-- /data_files/Kleb.table.10cv.0.0.pkl
-- /data_files/Kleb.model_acc
-
-This will output a single table to standard out.  While looping or scripting, it is recommended that this table be redirected to an output file of your choice.  After the second python script runs, the libsvm and matrix order files can be deleted by doing the following:
-
-```bash
-rm [libsvm output file location] [matrix order output file location]
-```
+The KMC output file in this case is the output from the *kmc_dump* tool included with KMC.  This requires you to run both *kmc* and *kmc_dump*.  

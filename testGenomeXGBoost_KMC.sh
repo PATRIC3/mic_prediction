@@ -1,6 +1,6 @@
 # !/bin/bash
 
-# testGenomeXGBoost.sh [fasta] [temp] [model] [threads] 
+# testGenomeXGBoost.sh [kmc out] [temp] [model] [threads] 
 #   [output file] [ArrInd map] [antibiotic list] [method list]
 #   [kmer list] [model accuracy]
 # 
