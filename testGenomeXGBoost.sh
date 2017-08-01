@@ -6,6 +6,12 @@
 # 
 #
 
+temp=$2
+
+if [[ "${2:${#2}-1}" != "/" ]]; then
+	temp="$2"/
+fi
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 base=$(basename $1)
 mod=$3
@@ -19,8 +25,8 @@ echo $macc
 
 echo $1 > $5
 
-$DIR/kmc.sh 10 $1 $2/$base $2 > $2/$base.kmc.stdout
-python $DIR/makeMatrix.py $2/$base.10.kmrs $inds $anti $meth $2/$base.libsvm $2/$base.matOrd $cont
-python $DIR/testXGBoost.py $3 $2$base.libsvm $2$base.matOrd $4 $macc | tail -n +2 >> $5
+$DIR/kmc.sh 10 $1 $temp/$base $temp > $temp/$base.kmc.stdout
+python $DIR/makeMatrix.py $temp/$base.10.kmrs $inds $anti $meth $temp/$base.libsvm $temp/$base.matOrd $cont
+python $DIR/testXGBoost.py $3 $temp$base.libsvm $temp$base.matOrd $4 $macc | tail -n +2 >> $5
 
-rm $2/*
+rm $temp/*

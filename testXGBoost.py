@@ -28,7 +28,7 @@ for i in f:
 		antiHsh[i[0]] = {}
 
 	antiHsh[i[0]][i[1]] = toStr(i[2:])
-	stderr.write(str(i) + '\n')
+	# stderr.write(str(i) + '\n')
 
 f.close()
 
