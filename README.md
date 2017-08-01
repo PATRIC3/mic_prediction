@@ -237,7 +237,7 @@ Tobramycin	BD_Pheonix	1.0	0.935438298873	0.92152099106	0.949355606686	1772	0.922
 ## 2.2 Running from KMC Output
 
 Additionally, you can run this tool using known KMC output, this also allows you to quickly script with a directory full of genomes that have been run through the KMC tool.  This is done using the *testGenomeXGBoost_KMC.sh* script.  It takes the following arguments:
-- KMC output : assembled fasta of genome to be predicted (*test_fasta/1001.fasta.10.kmrs*)
+- KMC output : output from *kmc_dump* tool (*test_fasta/1001.fasta.10.kmrs*)
 - temp : a directory to store temporary data in (*temp/*)
 - model : the pkl model produced by XGBoost (*data_files/KPN.mic.FIN.4.pkl*)
 - threads : the number of threads to use while running
