@@ -24,7 +24,7 @@ for i in f:
 	i = i.strip().split('\t')
 	if len(i) < 2:
 		continue
-	featureHash[i[1]] = i[0]
+	featureHash[i[0]] = i[1]
 
 f.close()
 
