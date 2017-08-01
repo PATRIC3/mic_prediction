@@ -180,20 +180,21 @@ The file contains the following:
 1. The first line gives the name of the fasta file used
 2. A tab delimited file containing the following columns
 	- Antibiotic : The antibiotic the MIC prediction is for.
-	- MIC Test Method	Prediction : The predicted MIC value.
+	- MIC Test Method	: This is the testing method that is being predicted for.  As of right now, the only data that is trained is that from the *BD Pheonix* method.  The predictions will state this.
+	- Prediction : The predicted MIC value.
 	- Average W1 antibiotic : Average within 1 two-fold dilution factor accuracy for the given antibiotic.
 	- 95-conf low antibiotic : The lower bound for the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the given antibiotic.
 	- 95-conf high antibiotic : The upper bound for the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the given antibiotic.
 	- Number of Antibiotic Samples : The number of samples trained for the given antibiotic.
-	- Avg	95-Conf Low : The average within 1 two-fold dilution factor accuracy for the antibiotic at the predicted MIC value.
-	- 95-Conf High : The lower bound for the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the antibiotic at the predicted MIC value.
-	- 95-Conf Size : The upper bound for the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the antibiotic at the predicted MIC value.
+	- Avg	: The average within 1 two-fold dilution factor accuracy for the antibiotic at the predicted MIC value.
+	- 95-Conf Low : The lower bound for the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the antibiotic at the predicted MIC value.
+	- 95-Conf High : The upper bound for the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the antibiotic at the predicted MIC value.
+	- 95-Conf Size : The size of the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the antibiotic at the predicted MIC value.
 	- Number of Samples : The number of samples trained on for the antibiotic at the given MIC value.  
-	<!-- - Antibiotic (antibiotic for prediction)
-	- MIC Test Method (MIC testing method predicted)
-	- Low Bound (the within 1 2-fold dilution lower bound)
-	- Prediction (the prediction given by the model)
-	- High Bound (the within 1 2-fold dilution upper bound) -->
+
+For certain antibiotics, the statistics for the given score will say "*prediction out of range*" when there exists no actual sample with a MIC value that is predicted for a given antibiotic.  For example, in the sample output below, there exists no Ertapenem samples with a MIC of 8.  
+
+In short, two sets of accuracy measures are provided for each prediction.  The first set reports model accuracies on a particular antibiotic (overall) while the second set reports model accuracies on a particular antibiotic at a particular MIC value.  
 
 The sample output will be formatted like the following:
 
