@@ -154,6 +154,8 @@ conda install -c conda-forge xgboost
 
 # 2 Running
 
+## 2.1 Running from FASTA
+
 The *testGenomeXGBoost.sh* script is used to make predictions and takes the name of the following arguments:
 - fasta : assembled fasta of genome to be predicted (*test_fasta/1001.fasta*)
 - temp : a directory to store temporary data in (*temp/*)
@@ -221,4 +223,36 @@ Nitrofurantoin	BD_Pheonix	4.0	prediction out of range
 Tetracycline	BD_Pheonix	0.5	prediction out of range
 Tobramycin	BD_Pheonix	1.0	0.935438298873	0.92152099106	0.949355606686	1772	0.922297979798	0.864693558084	0.979902401512	0.115208843427	104.0
 
+```
+
+## 2.2 Running from KMC Output
+
+Additionally, you can run this tool using known KMC output, this also allows you to quickly script with a directory full of genomes that have been run through the KMC tool.  To do this, two lines of code need to be run:
+
+```bash
+python /path/to/makeMatrix.py [kmc file] [/path/to/arrInd] [/path/to/uniq antibiotics list] [/path/to/MIC methods] [libsvm output file location] [matrix order output file location] [/path/to/contigs list]
+```
+
+The default locations for "/path/to/" files are (from the root of this README):
+- /makeMatrix.py
+- /data_files/arrInds
+- /data_files/antibioticsList_Kleb.uniq
+- /data_files/MICMethods
+- /data_files/all_kmrs
+
+This will create a libsvm matrix for you to predict with.  You can then run the following to make predictions and print the table to standard out:
+
+```bash
+python /path/to/testXGBoost.py [/path/to/model.mkl] [libsvm output file from previous step] [matrix order output file from previous step] [number of threads to use] [/path/to/model accuracy file]
+```
+
+The default locations for "/path/to/" files are (from the root of this README):
+- /testXGBoost.py
+- /data_files/Kleb.table.10cv.0.0.pkl
+- /data_files/Kleb.model_acc
+
+This will output a single table to standard out.  While looping or scripting, it is recommended that this table be redirected to an output file of your choice.  After the second python script runs, the libsvm and matrix order files can be deleted by doing the following:
+
+```bash
+rm [libsvm output file location] [matrix order output file location]
 ```
