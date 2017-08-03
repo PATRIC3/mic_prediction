@@ -59,6 +59,9 @@ f = open(argv[3])
 # for each antibiotic in file, append to list
 antibioList = []
 for i in f:
+	# skip comment char
+	if i[0] == '#':
+		continue
 	i = i.strip()
 	if i in featureHash:
 		antibioList.append(i)
