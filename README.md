@@ -186,7 +186,7 @@ The test run can be done using the following from the root directory of the AMR 
 
 ```bash
 cd /directory/of/this/file/
-bash mic_prediction_fasta.sh test_fasta/1001.fasta temp/ data_files/Kleb.table.10cv.0.0.pkl 1 test_out/xgbGenomeTest data_files/ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.mod_acc
+bash mic_prediction_fasta.sh test_fasta/1001.fasta temp/ data_files/Kleb.model.pkl 1 test_out/xgbGenomeTest data_files/ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.model.mod_acc
 ```
 
 This call will make predictions on the 1001.fasta file which is a fasta containing contigs for a Klebsiella genome.  Note that the model provided is only designed to make predictions for Klebsiella genomes.  To run on your own fasta, just replace the location of the fasta (*test_fasta/1001.fasta*) file with the location of your own fasta file.  
@@ -199,15 +199,6 @@ The file contains the following:
 	- Antibiotic : The antibiotic the MIC prediction is for.
 	- MIC Test Method	: This is the testing method that is being predicted for.  As of right now, the only data that is trained is that from the *BD Pheonix* method.  The predictions will state this.
 	- Prediction : The predicted MIC value.
-	- Average W1 antibiotic : Average within 1 two-fold dilution factor accuracy for the given antibiotic.
-	- 95-conf low antibiotic : The lower bound for the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the given antibiotic.
-	- 95-conf high antibiotic : The upper bound for the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the given antibiotic.
-	- Number of Antibiotic Samples : The number of samples trained for the given antibiotic.
-	- Avg	: The average within 1 two-fold dilution factor accuracy for the antibiotic at the predicted MIC value.
-	- 95-Conf Low : The lower bound for the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the antibiotic at the predicted MIC value.
-	- 95-Conf High : The upper bound for the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the antibiotic at the predicted MIC value.
-	- 95-Conf Size : The size of the 95% confidence interval for the within 1 two-fold dilution factor accuracy for the antibiotic at the predicted MIC value.
-	- Number of Samples : The number of samples trained on for the antibiotic at the given MIC value.  
 
 For certain antibiotics, the statistics for the given score will say "*prediction out of range*" when there exists no actual sample with a MIC value that is predicted for a given antibiotic.  For example, in the sample output below, there exists no Ertapenem samples with a MIC of 8.  
 
@@ -217,27 +208,27 @@ The sample output will be formatted like the following:
 
 ```
 test_fasta/1001.fasta
-Antibiotic	MIC Test Method	Prediction	Average W1 antibiotic	95-conf low antibiotic	95-conf high antibiotic	Number of Antibiotic Samples	Avg	95-Conf Low	95-Conf High	95-Conf Size	Number of Samples
-Amikacin	BD_Pheonix	4.0	0.969298406925	0.959960495127	0.978636318723	1773	0.957376614613	0.935428753509	0.979324475718	0.0438957222084	169.0
-Ampicillin	BD_Pheonix	32.0	0.996166191049	0.994264916636	0.998067465461	1772	0.997241705104	0.99515407074	0.999329339469	0.00417526872846	1738.0
-Aztreonam	BD_Pheonix	16.0	0.891708547704	0.872592902401	0.910824193008	1749	1.0	1.0	1.0	0.0	93.0
-Cefazolin	BD_Pheonix	4.0	0.960888634578	0.952537770768	0.969239498387	1773	0.416666666667	0.00198701967945	0.831346313654	0.829359293974	13.0
-Cefepime	BD_Pheonix	8.0	0.601583293055	0.569013976278	0.634152609831	1672	0.956547619048	0.906003691158	1.00709154694	0.101087855778	76.0
-Cefoxitin	BD_Pheonix	4.0	0.910395994857	0.893073691026	0.927718298689	1747	0.823524769113	0.774696153527	0.8723533847	0.0976572311727	449.0
-Ceftazidime	BD_Pheonix	4.0	0.90588441329	0.895740694246	0.916028132334	1773	0.5	0.112997513558	0.887002486442	0.774004972884	17.0
-Ceftriaxone	BD_Pheonix	4.0	0.888020735415	0.871767521672	0.904273949158	1773	0.375	-0.386740090415	1.13674009041	1.52348018083	9.0
-Cefuroxime sodium	BD_Pheonix	4.0	0.991192186746	0.98757212432	0.994812249172	1681	0.911388888889	0.861272130662	0.961505647116	0.100233516454	85.0
-Ciprofloxacin	BD_Pheonix	2.0	0.970461862497	0.961936295145	0.97898742985	1770	0.966666666667	0.891261427909	1.04207190542	0.150810477516	42.0
-Ertapenem	BD_Pheonix	8.0	prediction out of range
-Fosfomycin	BD_Pheonix	8.0	prediction out of range
-Gentamicin	BD_Pheonix	4.0	0.936032721813	0.92002951831	0.952035925316	1773	0.985413943355	0.96821159824	1.00261628847	0.0344046902312	191.0
-Imipenem	BD_Pheonix	1.0	0.936667080546	0.925895298013	0.947438863079	1772	0.963996335714	0.947750509881	0.980242161547	0.0324916516659	1061.0
-Levofloxacin	BD_Pheonix	0.5	prediction out of range
-Meropenem	BD_Pheonix	4.0	0.91878325845	0.906443008617	0.931123508284	1762	0.788571428571	0.650217083345	0.926925773798	0.276708690452	66.0
-Nitrofurantoin	BD_Pheonix	4.0	prediction out of range
-Tetracycline	BD_Pheonix	0.5	prediction out of range
-Tobramycin	BD_Pheonix	1.0	0.935438298873	0.92152099106	0.949355606686	1772	0.922297979798	0.864693558084	0.979902401512	0.115208843427	104.0
-
+Antibiotic	MIC Test Method	Prediction
+Amikacin	BD_Pheonix	8.0
+Ampicillin	BD_Pheonix	32.0
+Ampicillin/Sulbactam	BD_Pheonix	32.0
+Aztreonam	BD_Pheonix	16.0
+Cefazolin	BD_Pheonix	32.0
+Cefepime	BD_Pheonix	16.0
+Cefoxitin	BD_Pheonix	16.0
+Ceftazidime	BD_Pheonix	32.0
+Ceftriaxone	BD_Pheonix	4.0
+Cefuroxime sodium	BD_Pheonix	0.125
+Ciprofloxacin	BD_Pheonix	16.0
+Gentamicin	BD_Pheonix	0.125
+Imipenem	BD_Pheonix	128.0
+Levofloxacin	BD_Pheonix	32.0
+Meropenem	BD_Pheonix	16.0
+Nitrofurantoin	BD_Pheonix	128.0
+Piperacillin/Tazobactam	BD_Pheonix	16.0
+Tetracycline	BD_Pheonix	4.0
+Tobramycin	BD_Pheonix	16.0
+Trimethoprim/Sulfamethoxazole	BD_Pheonix	16.0
 ```
 
 ## 2.2 Running from KMC Output
@@ -256,7 +247,24 @@ Additionally, you can run this tool using known KMC output, this also allows you
 An example run of this script is below.  
 
 ```bash
-bash mic_prediction_kmc.sh test_fasta/1001.fasta.10.kmrs temp/ data_files/Kleb.table.10cv.0.0.pkl 1 test_out/xgbGenomeTest.KMC data_files/ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.mod_acc
+bash mic_prediction_kmc.sh test_fasta/1001.fasta.10.kmrs temp/ data_files/Kleb.model.pkl 1 test_out/xgbGenomeTest.KMC data_files/ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.model.mod_acc
 ```
 
 The KMC output file in this case is the output from the *kmc_dump* tool included with KMC.  This requires you to run both *kmc* and *kmc_dump*.  
+
+## 2.3 Getting Model Accuracies
+All data for the accuracy of models and confidence intervals are stored in the \*.mod_acc file.  For the provided Klebsiella model, the file *data_files/Kleb.model.mod_acc* provides the appropriate accuracies accross different antibiotic and MIC combinations.  Simply find the right line and read accross.  The file contains the following columns per line:
+- Antibiotic : the antibiotic for the accuracy measurements
+- MIC : the MIC value for the accuracy measurements
+- Average W1 antibiotic : the overall average score for the antibiotic MIC predictions
+- 95-conf low antibiotic : the lower end of the 95% C.I. for the antibiotic predictions
+- 95-conf high antibiotic : the upper end of the 95% C.I. for the antibiotic predictions
+- Number of Antibiotic Samples : the number of antibiotic samples trained on
+- Avg : the average W1 score for the given antibiotic-MIC combination
+- 95-Conf Low : the lower end of the 95% C.I. for the antibiotic-MIC combination predictions
+- 95-Conf High : the upper end of the 95% C.I. for the antibiotic-MIC combination predictions
+- 95-Conf Size : the size of the C.I. for the antibiotic-MIC combination predictions
+- Number of Samples : the number of antibiotic samples at the given MIC value trained on
+
+
+

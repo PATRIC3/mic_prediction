@@ -12,7 +12,7 @@ Ceftriaxone
 Cefuroxime sodium
 #Cephalothin
 Ciprofloxacin
-Ertapenem
+#Ertapenem
 #Fosfomycin
 Gentamicin
 Imipenem
@@ -21,6 +21,6 @@ Meropenem
 Nitrofurantoin
 Piperacillin/Tazobactam
 Tetracycline
-Ticarcillin/Clavulanate
+#Ticarcillin/Clavulanate
 Tobramycin
 Trimethoprim/Sulfamethoxazole
