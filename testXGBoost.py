@@ -1,3 +1,4 @@
+from __future__ import print_function
 '''
 python testXGBoost.py [pkl] [libsvm] [matOrd] [threads] 
 '''

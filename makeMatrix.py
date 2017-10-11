@@ -1,3 +1,4 @@
+from __future__ import print_function
 '''
 python makeMatrix.py [kmcOut] [arrInd] [antibioList] [micMethods] [out1] [out2] [contigs]
 '''
