@@ -1,3 +1,4 @@
+from __future__ import print_function
 '''
 python testXGBoost.py [pkl] [libsvm] [matOrd] [threads] 
 '''
@@ -50,7 +51,7 @@ f = open(argv[3])
 # init count
 count = 0
 # print header
-print "Antibiotic\tMIC Test Method\tPrediction"#\tAverage W1 antibiotic\t95-conf low antibiotic\t95-conf high antibiotic\tNumber of Antibiotic Samples\tAvg	95-Conf Low\t95-Conf High\t95-Conf Size	Number of Samples"
+print("Antibiotic\tMIC Test Method\tPrediction")#\tAverage W1 antibiotic\t95-conf low antibiotic\t95-conf high antibiotic\tNumber of Antibiotic Samples\tAvg	95-Conf Low\t95-Conf High\t95-Conf Size	Number of Samples"
 # for each line in file
 # get keys for antibiotic statistics
 # search for antibiotic statistics
@@ -67,7 +68,7 @@ for i in f:
 	# except:
 	# 	stats = "prediction out of range"
 
-	print i + '\t' + str(2**pred[count])# + '\t' + stats
+	print(i + '\t' + str(2**pred[count]))# + '\t' + stats
 
 	count += 1
 
