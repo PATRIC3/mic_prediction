@@ -51,7 +51,7 @@ f = open(argv[3])
 # init count
 count = 0
 # print header
-print("Antibiotic\tMIC Test Method\tPrediction")#\tAverage W1 antibiotic\t95-conf low antibiotic\t95-conf high antibiotic\tNumber of Antibiotic Samples\tAvg	95-Conf Low\t95-Conf High\t95-Conf Size	Number of Samples"
+print("Antibiotic\tMIC_Test_Method\tPrediction")#\tAverage W1 antibiotic\t95-conf low antibiotic\t95-conf high antibiotic\tNumber of Antibiotic Samples\tAvg	95-Conf Low\t95-Conf High\t95-Conf Size	Number of Samples"
 # for each line in file
 # get keys for antibiotic statistics
 # search for antibiotic statistics
