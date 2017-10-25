@@ -177,7 +177,7 @@ The *mic_prediction_fasta.sh* script is used to make predictions and takes the n
 - model : the pkl model produced by XGBoost (*data_files/KPN.mic.FIN.4.pkl*)
 - threads : the number of threads to use while running
 - output file : the file to output (*test_out/xgbGenomeTest* is provided as an example)
-- ArrInd map : a file that maps a feature to an array index (*data_files/ArrInds*)
+- ArrInd map : a file that maps a feature to an array index (*data_files/Kleb.ArrInds*)
 - antibiotic list : a file that contains a list of antibiotics to test on (*data_files/antibioticsList.uniq*)
 - method list : a file that contains a list of methdos to test on (*data_files/MICMethods*)
 - kmer list : a file that contains a list of kmers that can exist (*data_files/all_kmrs* can be used for **any** model that uses 10-mers)
@@ -186,7 +186,7 @@ The test run can be done using the following from the root directory of the AMR 
 
 ```bash
 cd /directory/of/this/file/
-bash mic_prediction_fasta.sh test_fasta/1001.fasta temp/ data_files/Kleb.model.pkl 1 test_out/xgbGenomeTest data_files/ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.model.mod_acc
+bash mic_prediction_fasta.sh test_fasta/1001.fasta temp/ data_files/Kleb.model.pkl 1 test_out/xgbGenomeTest data_files/Kleb.ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.model.mod_acc
 ```
 
 This call will make predictions on the 1001.fasta file which is a fasta containing contigs for a Klebsiella genome.  Note that the model provided is only designed to make predictions for Klebsiella genomes.  To run on your own fasta, just replace the location of the fasta (*test_fasta/1001.fasta*) file with the location of your own fasta file.  
@@ -239,7 +239,7 @@ Additionally, you can run this tool using known KMC output, this also allows you
 - model : the pkl model produced by XGBoost (*data_files/KPN.mic.FIN.4.pkl*)
 - threads : the number of threads to use while running
 - output file : the file to output (*test_out/xgbGenomeTest* is provided as an example)
-- ArrInd map : a file that maps a feature to an array index (*data_files/ArrInds*)
+- ArrInd map : a file that maps a feature to an array index (*data_files/Kleb.ArrInds*)
 - antibiotic list : a file that contains a list of antibiotics to test on (*data_files/antibioticsList.uniq*)
 - method list : a file that contains a list of methdos to test on (*data_files/MICMethods*)
 - kmer list : a file that contains a list of kmers that can exist (*data_files/all_kmrs* can be used for **any** model that uses 10-mers)
@@ -247,7 +247,7 @@ Additionally, you can run this tool using known KMC output, this also allows you
 An example run of this script is below.  
 
 ```bash
-bash mic_prediction_kmc.sh test_fasta/1001.fasta.10.kmrs temp/ data_files/Kleb.model.pkl 1 test_out/xgbGenomeTest.KMC data_files/ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.model.mod_acc
+bash mic_prediction_kmc.sh test_fasta/1001.fasta.10.kmrs temp/ data_files/Kleb.model.pkl 1 test_out/xgbGenomeTest.KMC data_files/Kleb.ArrInds data_files/antibioticsList_Kleb.uniq data_files/MICMethods data_files/all_kmrs data_files/Kleb.model.mod_acc
 ```
 
 The KMC output file in this case is the output from the *kmc_dump* tool included with KMC.  This requires you to run both *kmc* and *kmc_dump*.  
