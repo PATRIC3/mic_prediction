@@ -1,5 +1,5 @@
 test_fasta/1001.fasta.10.kmrs
-Antibiotic	MIC Test Method	Prediction
+Antibiotic	MIC_Test_Method	Prediction
 Amikacin	BD_Pheonix	8.0
 Ampicillin	BD_Pheonix	32.0
 Ampicillin/Sulbactam	BD_Pheonix	32.0
