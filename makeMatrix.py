@@ -50,6 +50,8 @@ for i in f:
 kmcLine = ''
 for i in contigs:
 	if i in kmcContigs:
+		if i not in featureHash:
+			continue
 		kmcLine += featureHash[i] + ':' + kmcContigs[i] + ' '
 
 f.close()
