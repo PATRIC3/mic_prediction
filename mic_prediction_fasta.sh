@@ -29,6 +29,11 @@ echo $1 > $5
 
 # rum KMC
 $DIR/kmc.sh 10 $1 $temp/$base $temp > $temp/$base.kmc.stdout
+
+if [ ! -f "$temp/$base.10.kmrs" ]; then
+	>&2 echo "Terminating run..."
+fi
+
 # build libsvm matrix
 python $DIR/makeMatrix.py $temp/$base.10.kmrs $inds $anti $meth $temp/$base.libsvm $temp/$base.matOrd $cont
 # make predictions and send to file

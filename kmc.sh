@@ -16,6 +16,11 @@ fin=$2
 fout=$3
 dir=$4
 
+if [ ! -f $fin ]; then
+	>&2 echo $fin does not exist
+	exit 1
+fi
+
 # run KMC
 kmc -k$k -fm -ci1 -cs1677215 $fin $fout $dir
 # run KMC dump
